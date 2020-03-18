@@ -114,20 +114,16 @@ module Enumerable
     end
   end
 
-  def my_map(&proc)
-    return to_enum(:my_map) unless block_given?
+  def my_map(proc = nil)
+    return to_enum :my_map unless block_given? || proc.class == Proc
 
-    counter = 0
-    array2 = []
-    while counter < size
-      array2 << if block_given?
-                  yield(self[counter])
-                else
-                  proc.call(self[counter])
-                end
-      counter += 1
+    new_array = []
+    if proc.class == Proc
+      my_each { |x| new_array << proc.call(x) }
+    elsif block_given?
+      my_each { |x| new_array << yield(x) }
     end
-    array2
+    new_array
   end
 
   def inject_arg_valid?(*arg)
