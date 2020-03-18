@@ -10,7 +10,7 @@
 
 - The code has been tested using the following test cases:
 
-* `my_each(num) do |n| puts n end`
+* `all the test cases are in the test.rb file`
 
 ## Author
 

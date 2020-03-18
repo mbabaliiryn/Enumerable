@@ -3,27 +3,26 @@
 # p [20, 40, 30, 10, 61, 70, 7, 9, 3, 2].my_each { |item| puts item }
 # num.my_each_with_index { |item, value| puts "#{item} with index #{value}" }
 # p [20, 40, 30, 10, 61, 70, 7, 9, 3, 2].my_select(&:odd?)
-# p num.my_all? { |x| x.length == 3 }
-# [1].all?
-# [1].my_all?
-# %w[a].all?(/\w/)
-# [1].all?(1)
-# [1].any?
-# [1].my_any?
-# [1].any?(Integer)
-# %w[a].any?(/\w/)
-# %w[a].my_any?(/\w/)
-# [1].any?(1)
-# [1].my_any?(1)
-# [1].my_any?(Integer)
-# p "",num.my_none? { |num| num.length == 10 }
-# p [false].my_none?
-# [1].none?(String)
-# [1].my_none?(String)
-# [1].none?(/\w/)
-# [1].my_none?(/\w/)
-# [1].none?(2)
-# [1].my_none?(2)
+# p %w[ant bear cat].all? { |word| word.length >= 3 }
+# p %w[ant bear cat].all? { |word| word.length >= 4 }
+# p %w[ant bear cat].all?(/t/)
+# p [1, 2i, 3.14].all?(Numeric)
+# p [nil, true, 99].all?
+# p [].all?
+# p %w[ant bear cat].any? { |word| word.length >= 3 }
+# p %w[ant bear cat].any? { |word| word.length >= 4 }
+# p %w[ant bear cat].any?(/d/)
+# p [nil, true, 99].any?(Integer)
+# [nil, true, 99].any?
+# p [].any?
+# p %w{ant bear cat}.none? { |word| word.length == 5 }
+# p %w{ant bear cat}.none? { |word| word.length >= 4 }
+# p %w{ant bear cat}.none?(/d/)
+# p [1, 3.14, 42].none?(Float)
+# p [].none?
+# p [nil].none?
+# p [nil, false].none?
+# p [nil, false, true].none?
 # p num.my_count { |item| item.length.even? }
 # p [1, 2, 3].count
 # p [1, 2, 3].count(2)

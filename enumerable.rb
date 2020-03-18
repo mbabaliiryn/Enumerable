@@ -34,29 +34,40 @@ module Enumerable
     num
   end
 
-  def my_all?(_regx = nil)
-    my_each do |x|
-      return false if block_given? && yield(x)
+  def my_all?(param = nil)
+    return test_param_all(param) unless param.nil?
+
+    all_true = true
+    if block_given?
+      my_each { |x| all_true = false unless yield(x) }
+    else
+      my_each { |x| all_true = false if x.nil? || x == false }
     end
-    true
+    all_true
   end
 
-  def my_any?(_regx = nil)
-    my_each do |x|
-      return true if block_given? && yield(x)
+  def my_any?(param = nil)
+    return test_param_any(param) unless param.nil?
+
+    any_true = false
+    if block_given?
+      my_each { |x| any_true = true if yield(x) }
+    else
+      my_each { |x| any_true = true if !x.nil? && x != false }
     end
-    false
+    any_true
   end
 
-  def my_none?(_regx = nil)
-    my_each do |x|
-      if block_given?
-        return false if yield(x)
-      elsif x
-        return false
-      end
+  def my_none?(param = nil)
+    return test_param_none(param) unless param.nil?
+
+    all_false = true
+    if block_given?
+      my_each { |x| all_false = false if yield(x) }
+    else
+      my_each { |x| all_false = false unless x.nil? || x == false }
     end
-    true
+    all_false
   end
 
   def my_count(index = nil)
