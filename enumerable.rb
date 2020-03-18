@@ -46,6 +46,16 @@ module Enumerable
     all_true
   end
 
+  def test_param_all(param)
+    if param.class == Regexp
+      my_all? { |x| x =~ param }
+    elsif param.class == Class
+      my_all? { |x| x.is_a? param }
+    else
+      my_all? { |x| x == param }
+    end
+  end
+
   def my_any?(param = nil)
     return test_param_any(param) unless param.nil?
 
@@ -58,6 +68,16 @@ module Enumerable
     any_true
   end
 
+  def test_param_any(param)
+    if param.class == Regexp
+      my_any? { |x| x =~ param }
+    elsif param.class == Class
+      my_any? { |x| x.is_a? param }
+    else
+      my_any? { |x| x == param }
+    end
+  end
+
   def my_none?(param = nil)
     return test_param_none(param) unless param.nil?
 
@@ -68,6 +88,16 @@ module Enumerable
       my_each { |x| all_false = false unless x.nil? || x == false }
     end
     all_false
+  end
+
+  def test_param_none(param)
+    if param.class == Regexp
+      my_none? { |x| x =~ param }
+    elsif param.class == Class
+      my_none? { |x| x.is_a? param }
+    else
+      my_none? { |x| x == param }
+    end
   end
 
   def my_count(index = nil)
