@@ -31,7 +31,7 @@ module Enumerable
       num << self[counter] if yield(self[counter])
       counter += 1
     end
-    num
+    self
   end
 
   def my_all?(param = nil)

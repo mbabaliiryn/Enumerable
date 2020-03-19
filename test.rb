@@ -35,6 +35,9 @@
 # p num.my_count { |item| item.length.even? }
 # p [1, 2, 3].count
 # p [1, 2, 3].count(2)
+# p my_proc = Proc.new { |num| num > 5 }
+# p [4, 6].my_map(my_proc)
+# p [4, 6].my_map(my_proc) { |num| num < 5 }
 # p num.my_map { |item| item.to_i + 5 }
 # p [1].map
 # p [1].my_map
